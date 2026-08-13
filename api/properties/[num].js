@@ -5,10 +5,15 @@
 'use strict';
 
 const { ensureReady, query } = require('../../lib/db');
+const { isAuthenticated } = require('../../lib/auth');
 const { getJsonBody, sendJson, withErrorHandling } = require('../../lib/http');
 
 module.exports = async (req, res) => {
   await withErrorHandling(res, async () => {
+    if (!isAuthenticated(req)) {
+      return sendJson(res, 401, { error: 'Not authenticated.' });
+    }
+
     await ensureReady();
 
     const num = Number(req.query && req.query.num);
