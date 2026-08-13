@@ -3,10 +3,17 @@
 'use strict';
 
 const { ensureReady, query } = require('../../lib/db');
+const { isAuthenticated } = require('../../lib/auth');
 const { getJsonBody, sendJson, withErrorHandling } = require('../../lib/http');
 
 module.exports = async (req, res) => {
   await withErrorHandling(res, async () => {
+    // This route sits behind the passcode gate: check the session before
+    // touching the database at all.
+    if (!isAuthenticated(req)) {
+      return sendJson(res, 401, { error: 'Not authenticated.' });
+    }
+
     // Self-healing: make sure the table exists and is seeded before we touch it.
     await ensureReady();
 
