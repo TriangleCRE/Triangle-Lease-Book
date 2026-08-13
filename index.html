@@ -32,13 +32,14 @@ a{color:var(--green-d)}
 .topbar{position:sticky; top:0; z-index:40; background:#1c2126; color:#fff;
   display:flex; align-items:center; gap:16px; padding:10px 20px; box-shadow:var(--shadow-lg);}
 .topbar .logo{height:38px; width:auto; display:block; background:#1c2126; border-radius:4px}
+#logoLink{text-decoration:none; line-height:0}
 .topbar .brand{display:flex; flex-direction:column; line-height:1.15}
 .topbar .brand .t1{font-weight:700; font-size:15px; letter-spacing:.02em}
 .topbar .brand .t2{font-size:11px; color:#9fb0a6; letter-spacing:.14em; text-transform:uppercase}
 .topbar .spacer{flex:1}
 .topbar .actions{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
 .btn{border:1px solid transparent; background:#2b333a; color:#e8edf1; padding:8px 13px; border-radius:var(--r-sm);
-  font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:6px; transition:.12s;}
+  font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:6px; transition:.12s; text-decoration:none;}
 .btn:hover{background:#39434c}
 .btn.primary{background:var(--green); color:#fff}
 .btn.primary:hover{background:var(--green-d)}
@@ -239,10 +240,13 @@ body.editing .trow{cursor:default}
 
 <div id="app" class="hidden">
 <div class="topbar">
-  <img class="logo" id="logo" alt="Triangle Investment Group">
+  <a href="https://dashboard-hub-one-vert.vercel.app/" id="logoLink" aria-label="Dashboard Hub">
+    <img class="logo" id="logo" alt="Triangle Investment Group">
+  </a>
   <div class="brand"><span class="t1">Triangle Investment Group</span><span class="t2">Lease Dashboard</span></div>
   <div class="spacer"></div>
   <div class="actions">
+    <a class="btn ghost" href="https://dashboard-hub-one-vert.vercel.app/" id="dashboardHubBtn">⌂ Dashboard Hub</a>
     <button class="btn ghost" id="viewProp">▦ Property View</button>
     <button class="btn ghost" id="viewTable">☰ All Tenants</button>
     <button class="btn ghost" id="editToggle">✎ Edit</button>
